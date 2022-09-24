@@ -13,6 +13,7 @@
 		FFCC3CE828DE8AB40003680B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CE628DE8AB40003680B /* Main.storyboard */; };
 		FFCC3CEA28DE8AB60003680B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CE928DE8AB60003680B /* Assets.xcassets */; };
 		FFCC3CED28DE8AB60003680B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CEB28DE8AB60003680B /* LaunchScreen.storyboard */; };
+		FFCC3CF528DE8B690003680B /* someVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC3CF428DE8B690003680B /* someVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FFCC3CE928DE8AB60003680B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFCC3CEC28DE8AB60003680B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFCC3CEE28DE8AB60003680B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFCC3CF428DE8B690003680B /* someVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = someVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				FFCC3CE028DE8AB40003680B /* AppDelegate.swift */,
 				FFCC3CE228DE8AB40003680B /* SceneDelegate.swift */,
 				FFCC3CE428DE8AB40003680B /* ViewController.swift */,
+				FFCC3CF428DE8B690003680B /* someVC.swift */,
 				FFCC3CE628DE8AB40003680B /* Main.storyboard */,
 				FFCC3CE928DE8AB60003680B /* Assets.xcassets */,
 				FFCC3CEB28DE8AB60003680B /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFCC3CF528DE8B690003680B /* someVC.swift in Sources */,
 				FFCC3CE528DE8AB40003680B /* ViewController.swift in Sources */,
 				FFCC3CE128DE8AB40003680B /* AppDelegate.swift in Sources */,
 				FFCC3CE328DE8AB40003680B /* SceneDelegate.swift in Sources */,
