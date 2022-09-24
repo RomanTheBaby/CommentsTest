@@ -22,6 +22,7 @@ class SomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var detailView: UIView!
     
+    // name strill depends on what it actually is. String is just an example
     private var dataArray: [String] = []
     
     
