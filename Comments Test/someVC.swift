@@ -6,84 +6,128 @@
 //
 
 import UIKit
-func isIPhone() -> Bool {
-    return UIDevice.current.userInterfaceIdiom == .phone
+
+
+/// This is just a mock
+private class SomeCell: UICollectionViewCell, Reusable, NibLoadable {
+
 }
-class someVC: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
-    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var detailViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var detailView: UIView!
-    var detailVC : UIViewController?
-    var dataArray : [Any]?
-    override func viewWillAppear(_ animated: Bool) {
-        fetchData()
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.collectionView.register(UINib(nibName: "someCell",
-                                           bundle: nil), forCellWithReuseIdentifier: "someCell")
+
+class SomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    
+    // MARK: - Private Properties
+    
+    @IBOutlet private var detailViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var detailView: UIView!
+    
+    private var dataArray: [String] = []
+    
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title:NSLocalizedString("Done&quot", comment: ""), style: .plain, target: self,
-                                                                      action: #selector(dissmissController))
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(SomeCell.nib, forCellWithReuseIdentifier: SomeCell.reuseIdentifier)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action:#selector(dissmissController(_:)))
+        
+        fetchData()
     }
-    @objc func dissmissController () {}
-    func fetchData() {
+    
+    
+    // MARK: - Private Methods
+    
+    private func fetchData() {
         let url = URL(string: "testreq")!
-        let task = URLSession.shared.dataTask(with: url) { [self](data, response, error) in
-            self.dataArray = data as? [Any]
-            self.collectionView.reloadData()
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let data = data,
+                  let strings = String(data: data, encoding: .utf8)?.components(separatedBy: ",") else {
+                return
+            }
+            
+            // dataArray depends on what data actually is
+            self?.dataArray = strings
+            self?.collectionView.reloadData()
         }
         task.resume()
     }
     
-    @IBAction func closeshowDetails () {
-        self.detailViewWidthConstraint.constant = 0
-        UIView.animate(withDuration: 0.5, animations:
-                        {
-            self.view.layoutIfNeeded()
+    
+    // MARK: - Actions Handling
+    
+    @objc private func dissmissController(_ sender: UIBarButtonItem) {
+//        ???
+//        dismiss(animated: true)
+    }
+    
+    @IBAction private func cloShowDetails() {
+        detailViewWidthConstraint.constant = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            /// Or more fancy animation
+            self.detailView.isHidden = true
         })
-        { (completed) in
-            self.detailVC?.removeFromParent()
-        }
     }
-    @IBAction func showDetail () {
-        self.detailViewWidthConstraint.constant = 100
-        UIView.animate(withDuration: 0.5, animations:
-                        {
-            self.view.layoutIfNeeded()
+    
+    @IBAction private func showDetail() {
+        detailViewWidthConstraint.constant = 100
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            /// Or more fancy animation
+            self.detailView.isHidden = false
         })
-        { (completed) in
-            self.view.addSubview(self.detailView)
-        }
+
     }
-    open func collectionView(_ collectionView: UICollectionView,
-                             layout collectionViewLayout: UICollectionViewLayout,
-                             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var widthMultiplier: CGFloat = 0.2929
-        if isIPhone() {
-            widthMultiplier = 0.9
-        }
-        return CGSize(width: view.frame.width * widthMultiplier ,
-                      height: 150.0)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout
-                        collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let frameWidth = (view.frame.width * 0.2929 * 3) + 84
-        var minSpacing: CGFloat = (view.frame.width - frameWidth)/2
-        if isIPhone() {
-            minSpacing = 24
-        }
-        return minSpacing
-    }
+    
+    
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataArray?.count ?? 0
+        return dataArray.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
+    
+    
+    // MARK: - UICollectionViewDelegate
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.showDetail()
+        showDetail()
     }
     
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let widthMultiplier: CGFloat = UIDevice.current.isIPhone ? 0.9 : 0.2929
+        return CGSize(width: view.frame.width * widthMultiplier, height: 150.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+                        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if UIDevice.current.isIPhone {
+            return 24
+        }
+        
+        let frameWidth = (view.frame.width * 0.2929 * 3) + 84
+        return (view.frame.width - frameWidth) / 2
+    }
+    
+}
+
+
+private extension UIDevice {
+    var isIPhone: Bool {
+        userInterfaceIdiom == .phone
+    }
 }

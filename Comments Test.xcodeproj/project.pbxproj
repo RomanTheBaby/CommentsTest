@@ -13,7 +13,9 @@
 		FFCC3CE828DE8AB40003680B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CE628DE8AB40003680B /* Main.storyboard */; };
 		FFCC3CEA28DE8AB60003680B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CE928DE8AB60003680B /* Assets.xcassets */; };
 		FFCC3CED28DE8AB60003680B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFCC3CEB28DE8AB60003680B /* LaunchScreen.storyboard */; };
-		FFCC3CF528DE8B690003680B /* someVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC3CF428DE8B690003680B /* someVC.swift */; };
+		FFCC3CF528DE8B690003680B /* SomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC3CF428DE8B690003680B /* SomeVC.swift */; };
+		FFE2397328DE977700F55811 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2397228DE977700F55811 /* Reusable.swift */; };
+		FFE2397528DE979000F55811 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2397428DE979000F55811 /* NibLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		FFCC3CE928DE8AB60003680B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFCC3CEC28DE8AB60003680B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFCC3CEE28DE8AB60003680B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFCC3CF428DE8B690003680B /* someVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = someVC.swift; sourceTree = "<group>"; };
+		FFCC3CF428DE8B690003680B /* SomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeVC.swift; sourceTree = "<group>"; };
+		FFE2397228DE977700F55811 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		FFE2397428DE979000F55811 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,26 @@
 		FFCC3CDF28DE8AB40003680B /* Comments Test */ = {
 			isa = PBXGroup;
 			children = (
+				FFE2397128DE976D00F55811 /* Protocols */,
 				FFCC3CE028DE8AB40003680B /* AppDelegate.swift */,
 				FFCC3CE228DE8AB40003680B /* SceneDelegate.swift */,
 				FFCC3CE428DE8AB40003680B /* ViewController.swift */,
-				FFCC3CF428DE8B690003680B /* someVC.swift */,
+				FFCC3CF428DE8B690003680B /* SomeVC.swift */,
 				FFCC3CE628DE8AB40003680B /* Main.storyboard */,
 				FFCC3CE928DE8AB60003680B /* Assets.xcassets */,
 				FFCC3CEB28DE8AB60003680B /* LaunchScreen.storyboard */,
 				FFCC3CEE28DE8AB60003680B /* Info.plist */,
 			);
 			path = "Comments Test";
+			sourceTree = "<group>";
+		};
+		FFE2397128DE976D00F55811 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2397228DE977700F55811 /* Reusable.swift */,
+				FFE2397428DE979000F55811 /* NibLoadable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFCC3CF528DE8B690003680B /* someVC.swift in Sources */,
+				FFCC3CF528DE8B690003680B /* SomeVC.swift in Sources */,
 				FFCC3CE528DE8AB40003680B /* ViewController.swift in Sources */,
 				FFCC3CE128DE8AB40003680B /* AppDelegate.swift in Sources */,
+				FFE2397528DE979000F55811 /* NibLoadable.swift in Sources */,
 				FFCC3CE328DE8AB40003680B /* SceneDelegate.swift in Sources */,
+				FFE2397328DE977700F55811 /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
