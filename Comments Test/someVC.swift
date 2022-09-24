@@ -8,7 +8,7 @@
 import UIKit
 
 
-/// This is just a mock
+/// This is just a mock, no xib for this one yet
 private class SomeCell: UICollectionViewCell, Reusable, NibLoadable {
 
 }
