@@ -22,7 +22,7 @@ class SomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var detailView: UIView!
     
-    // name strill depends on what it actually is. String is just an example
+    // name still depends on what it actually is. String is just an example
     private var dataArray: [String] = []
     
     
@@ -46,14 +46,17 @@ class SomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     private func fetchData() {
         let url = URL(string: "testreq")!
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let data = data,
+            guard let self = self,
+                  let data = data,
                   let strings = String(data: data, encoding: .utf8)?.components(separatedBy: ",") else {
                 return
             }
             
             // dataArray depends on what data actually is
-            self?.dataArray = strings
-            self?.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.dataArray = strings
+                self.collectionView.reloadData()
+            }
         }
         task.resume()
     }
