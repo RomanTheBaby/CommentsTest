@@ -69,7 +69,7 @@ class SomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        dismiss(animated: true)
     }
     
-    @IBAction private func cloShowDetails() {
+    @IBAction private func closeDetailsView() {
         detailViewWidthConstraint.constant = 0
         
         UIView.animate(withDuration: 0.5, animations: {
