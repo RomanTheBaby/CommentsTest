@@ -13,7 +13,7 @@ private class SomeCell: UICollectionViewCell, Reusable, NibLoadable {
 
 }
 
-class SomeVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class SomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     
     // MARK: - Private Properties
